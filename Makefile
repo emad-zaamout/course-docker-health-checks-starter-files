@@ -21,7 +21,7 @@ build: ## Build all containers for DEV
 start: ## Start all containers
 	@docker compose up --force-recreate -d
 
-fresh: stop destroy build start install  ## Destroy & recreate all uing dev containers.
+fresh: stop destroy build start  ## Destroy & recreate all uing dev containers.
 
 stop: ## Stop all containers
 	@docker compose stop

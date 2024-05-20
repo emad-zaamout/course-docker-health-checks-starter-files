@@ -13,7 +13,8 @@ services:
         ports:
             - 9000:8080
         depends_on:
-            - database_mysql
+            database_mysql:
+                condition: service_healthy
     database_mysql:
         container_name: database_mysql
         image: mysql:8.0
@@ -26,5 +27,10 @@ services:
             - MYSQL_ROOT_PASSWORD=secret
         volumes:
             - db-data:/var/lib/mysql
+        healthcheck:
+            test: ["CMD-SHELL", "mysqladmin ping -h localhost -u laravel -psecret || exit 1"]
+            interval: 5s
+            timeout: 5s
+            retries: 5
 volumes:
     db-data:

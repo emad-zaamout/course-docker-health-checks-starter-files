@@ -13,6 +13,7 @@ else
     echo "Using existing .env"
 fi
 
+composer install
 php artisan migrate
 
 # Set max concurrency to match pm.max_children. Default to 4
